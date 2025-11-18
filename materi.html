@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Konkurensi - Simulasi Manajemen Proses</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+</head>
+<body>
+
+    <!-- ANIMATED BACKGROUND -->
+    <div class="bg-animation"></div>
+    <div class="decor decor-left"></div>
+    <div class="decor decor-right"></div>
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+        <h2 class="side-title">MENU</h2>
+
+        <a href="index.html" class="side-link">
+            <i class='bx bx-home'></i> Beranda
+        </a>
+        <a href="materi.html" class="side-link active">
+            <i class='bx bx-book'></i> Materi
+        </a>
+        <a href="#" class="side-link">
+            <i class='bx bx-cog'></i> Simulasi
+        </a>
+        <a href="#" class="side-link">
+            <i class='bx bx-info-circle'></i> Tentang Kami
+        </a>
+    </aside>
+
+    <!-- TOGGLE BUTTON -->
+    <button id="toggleBtn" class="toggle-btn">
+        <i class='bx bx-menu'></i>
+    </button>
+
+    <!-- HERO CONTENT -->
+    <section class="hero fade-in">
+        <div class="hero-card">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="title floating">MATERI</h1>
+                    <h2 class="subtitle">MANAJEMEN PROSES</h2>
+                    <h2 class="subtitle subtitle-2">& KONKURENSI</h2>
+                    <p class="desc">
+                        Pelajari konsep dasar konkurensi dalam sistem operasi, mulai dari pengantar hingga contoh praktis. Materi ini menjadi landasan sebelum masuk ke simulasi interaktif.
+                    </p>
+                </div>
+                <div class="hero-img">
+                    <img src="illustration.png" alt="Ilustrasi materi konkurensi dalam sistem operasi">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MATERI CONTENT SECTION -->
+    <section class="materi-content">
+        <div class="materi-card">
+            <h2>1. Pengantar Manajemen Proses & Konkurensi</h2>
+            <p>Dalam sistem operasi, proses adalah program yang sedang dieksekusi. Setiap proses memerlukan sumber daya seperti CPU, memori, file, dan akses input/output. Agar komputer dapat menjalankan berbagai tugas dalam waktu bersamaan, sistem operasi menerapkan konkurensi (concurrency).</p>
+            <p>Konkurensi adalah kemampuan sistem untuk mengeksekusi beberapa proses secara overlapping dalam satu rentang waktu. Bahkan pada sistem dengan satu CPU, konkurensi dapat terjadi melalui context switching, sementara pada sistem multi-core, konkurensi dapat benar-benar berjalan paralel (parallelism).</p>
+            <p>Konkurensi diperlukan untuk:</p>
+            <ul>
+                <li>Meningkatkan throughput dan efisiensi CPU.</li>
+                <li>Mempercepat penyelesaian tugas.</li>
+                <li>Memungkinkan pengalaman multitasking.</li>
+                <li>Mendukung sistem modern seperti web server, database, dan aplikasi real-time.</li>
+            </ul>
+
+            <h2>2. Eksekusi Sequential vs Concurrent</h2>
+            <h3>a. Eksekusi Sequential</h3>
+            <p>Dalam eksekusi sequential, proses dijalankan satu per satu secara berurutan. Proses berikutnya hanya dapat berjalan setelah proses sebelumnya selesai.</p>
+            <p><strong>Kelebihan:</strong></p>
+            <ul>
+                <li>Lebih mudah dianalisis.</li>
+                <li>Tidak mengalami race condition.</li>
+            </ul>
+            <p><strong>Kekurangan:</strong></p>
+            <ul>
+                <li>Lambat karena tidak memanfaatkan potensi paralel.</li>
+            </ul>
+            <p><strong>Contoh:</strong> P1 → P2 → P3 → P4<br>Total waktu = jumlah seluruh durasi proses.</p>
+
+            <h3>b. Eksekusi Concurrent</h3>
+            <p>Dalam concurrent execution, beberapa proses dapat berjalan dalam waktu yang sama. Sistem dapat membagi CPU ke beberapa proses, atau menjalankannya paralel pada beberapa core.</p>
+            <p><strong>Kelebihan:</strong></p>
+            <ul>
+                <li>Waktu penyelesaian lebih cepat.</li>
+                <li>Memanfaatkan CPU multi-core.</li>
+                <li>Cocok untuk proses independen.</li>
+            </ul>
+            <p><strong>Contoh:</strong><br>P1: |------|<br>P2: &nbsp;&nbsp;|---------|<br>P3: &nbsp;&nbsp;&nbsp;&nbsp;|---|<br>Total waktu = durasi proses terlama pada kelompok paralel.</p>
+
+            <h3>c. Hubungan dengan Thread</h3>
+            <p>Thread adalah unit eksekusi terkecil dalam proses. Dalam simulasi ini, setiap proses dapat dianggap sebagai thread yang memiliki:</p>
+            <ul>
+                <li>Nama proses.</li>
+                <li>Durasi eksekusi.</li>
+                <li>Relasi ketergantungan (opsional).</li>
+            </ul>
+            <p>Thread-thread ini dijalankan menggunakan model paralel sehingga menghasilkan simulasi konkurensi yang lebih realistis.</p>
+
+            <h2>3. Race Condition & Sinkronisasi</h2>
+            <p>Konkurensi membuka peluang race condition, yaitu kondisi ketika dua atau lebih proses mengakses dan memodifikasi data bersama secara bersamaan sehingga hasilnya tidak dapat diprediksi.</p>
+            <p><strong>Contoh:</strong> Dua proses meng-update variabel counter secara konkuren → hasil akhir bisa salah.</p>
+            <p>Untuk mencegah race condition, sistem menggunakan:</p>
+            <ul>
+                <li>Mutual Exclusion (Mutex) — hanya satu proses boleh mengakses sumber daya dalam satu waktu.</li>
+                <li>Semaphore — mekanisme sinkronisasi berbasis counter.</li>
+                <li>Monitor — abstraksi yang mengelola akses metode secara eksklusif.</li>
+            </ul>
+            <p>Meskipun simulasi web kalian tidak memodelkan mutex, memahami konsep ini penting sebagai landasan teori.</p>
+
+            <h2>4. Deadlock dan Starvation</h2>
+            <h3>a. Deadlock</h3>
+            <p>Deadlock terjadi ketika dua atau lebih proses saling menunggu resource yang dimiliki proses lain, sehingga tidak ada satupun yang dapat melanjutkan eksekusi.</p>
+            <p><strong>Empat kondisi deadlock:</strong></p>
+            <ol>
+                <li>Mutual exclusion.</li>
+                <li>Hold and wait.</li>
+                <li>No preemption.</li>
+                <li>Circular wait.</li>
+            </ol>
+            <p><strong>Solusi:</strong></p>
+            <ul>
+                <li><strong>Prevention:</strong> Menanggalkan salah satu dari empat kondisi deadlock.</li>
+                <li><strong>Detection & Recovery:</strong> Mendeteksi dan membatalkan salah satu proses.</li>
+                <li><strong>Avoidance:</strong> Menggunakan algoritma seperti Banker's algorithm.</li>
+            </ul>
+
+            <h3>b. Starvation</h3>
+            <p>Starvation terjadi ketika proses berprioritas rendah tidak pernah mendapatkan jatah eksekusi karena digantikan terus oleh proses yang lebih tinggi.</p>
+            <p><strong>Solusi:</strong></p>
+            <ul>
+                <li>Aging (prioritas proses naik seiring waktu).</li>
+                <li>Fair scheduling (mis. Round Robin).</li>
+            </ul>
+
+            <h2>5. Parbegin–Parend Constructs</h2>
+            <h3>a. Pengertian</h3>
+            <ul>
+                <li>parbegin → menandai awal blok konkuren.</li>
+                <li>parend → menandai akhir blok konkuren.</li>
+            </ul>
+            <p>Semua proses di dalam parbegin–parend akan dieksekusi secara bersamaan. Eksekusi program lanjut hanya setelah seluruh proses dalam blok selesai.</p>
+            <h3>b. Bentuk Umum</h3>
+            <pre>parbegin
+   S1
+   S2
+   S3
+parend</pre>
+            <h3>c. Perilaku Eksekusi</h3>
+            <ul>
+                <li>S1, S2, S3 dieksekusi parallel.</li>
+                <li>Total waktu = waktu proses terlama.</li>
+            </ul>
+            <p>Struktur ini sangat cocok untuk simulasi karena:</p>
+            <ul>
+                <li>Mudah divisualisasikan.</li>
+                <li>Dapat dihitung perbedaan sequential vs concurrent.</li>
+                <li>Sesuai dengan konsep multithreading sederhana.</li>
+            </ul>
+
+            <h2>6. Fork–Join Constructs</h2>
+            <p>Struktur ini mirip dengan parbegin–parend namun lebih rendah levelnya.</p>
+            <h3>a. Fork</h3>
+            <p>Menghasilkan dua atau lebih cabang eksekusi paralel.</p>
+            <h3>b. Join</h3>
+            <p>Menggabungkan kembali proses-proses yang telah berjalan paralel.</p>
+            <h3>c. Contoh</h3>
+            <pre>count := 2
+fork L1
+S1
+goto L2
+
+L1: S2
+goto L2
+
+L2: join count
+S3</pre>
+
+            <h2>7. Precedence Graph (Graf Ketergantungan)</h2>
+            <h3>a. Definisi</h3>
+            <ul>
+                <li>Node = proses (misal S1, S2).</li>
+                <li>Edge = ketergantungan (S1 → S3 berarti S3 menunggu S1 selesai).</li>
+            </ul>
+            <h3>b. Fungsi</h3>
+            <ul>
+                <li>Menentukan urutan eksekusi yang valid.</li>
+                <li>Mengetahui proses mana yang bisa berjalan paralel.</li>
+                <li>Sinkronisasi otomatis berdasarkan hubungan ketergantungan.</li>
+            </ul>
+            <h3>c. Contoh</h3>
+            <p>S1 → S3<br>S2 → S3<br>S3 → S4</p>
+            <p><strong>Interpretasi:</strong></p>
+            <ul>
+                <li>S1 dan S2 dapat dijalankan paralel.</li>
+                <li>S3 menunggu keduanya.</li>
+                <li>S4 menunggu S3.</li>
+            </ul>
+
+            <h2>8. Contoh: Perbandingan Sequential dan Concurrent</h2>
+            <p><strong>Input:</strong></p>
+            <ul>
+                <li>P1 = 4 detik</li>
+                <li>P2 = 2 detik</li>
+                <li>P3 = 3 detik</li>
+                <li>P4 = 1 detik</li>
+                <li>Dependensi: P3 menunggu P1 & P2</li>
+                <li>P4 tidak memiliki dependensi</li>
+            </ul>
+            <p><strong>Sequential Execution:</strong><br>P1 → P2 → P3 → P4<br>Total waktu: 4 + 2 + 3 + 1 = 10 detik</p>
+            <p><strong>Concurrent Execution:</strong></p>
+            <ul>
+                <li>P1 dan P2 → paralel (4 detik)</li>
+                <li>Setelah selesai, P3 jalan (3 detik)</li>
+                <li>P4 bisa jalan kapan saja (1 detik)</li>
+            </ul>
+            <p>Layer 1: P1 (4s), P2 (2s)<br>Layer 2: P3 (3s)<br>Layer 3: P4 (1s)<br>Total waktu = 4 + 3 = 7 detik</p>
+            <p><strong>Hasil:</strong></p>
+            <ul>
+                <li>Eksekusi paralel lebih cepat karena memanfaatkan concurrency.</li>
+                <li>Semakin banyak proses independen, semakin besar peningkatan performa.</li>
+            </ul>
+
+            <h2>Video Pembelajaran: Konkurensi dalam Sistem Operasi</h2>
+<div class="video-carousel">
+    <div class="carousel-container">
+        <div class="video-slide active">
+            <h3>Pengantar Konkurensi</h3>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/Rgen4E6RMpU?si=cREsLi9d1vCHcI8t" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="video-slide">
+            <h3>Race Condition & Sinkronisasi</h3>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/-j-w0EA829E?si=JS9IFAO1whNTMHas" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="video-slide">
+            <h3>Deadlock dan Solusinya</h3>
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/jRcT3mkLktg?si=rVR8vgNFbEdEr5OQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-btn prev-btn" id="prevBtn"><i class='bx bx-chevron-left'></i></button>
+    <button class="carousel-btn next-btn" id="nextBtn"><i class='bx bx-chevron-right'></i></button>
+</div>
+<p>Video ini menjelaskan konsep konkurensi secara visual. Geser dengan panah untuk melihat video lainnya. Jika video tidak muncul, pastikan koneksi internet stabil.</p>
+            <p>Video ini menjelaskan konsep konkurensi secara visual. Geser dengan panah untuk melihat video lainnya. Jika video tidak muncul, pastikan koneksi internet stabil.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2025 Simulasi Manajemen Konkruensi. Dibuat oleh kelompok 5 mata kuliah Sistem Operasi.</p>
+        <div class="footer-links">
+            <a href="#"><i class='bx bxl-facebook'></i></a>
+            <a href="#"><i class='bx bxl-twitter'></i></a>
+            <a href="#"><i class='bx bxl-github'></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
